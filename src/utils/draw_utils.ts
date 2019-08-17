@@ -43,7 +43,7 @@ export const newNode = function (pParent, pNodeType, pId = null, pClass = null, 
   if (pId) vNewNode.id = pId; // I wish I could do this with setAttribute but older IEs don't play nice
   if (pClass) vNewNode.className = pClass;
   if (pWidth) vNewNode.style.width = (isNaN(pWidth * 1)) ? pWidth : pWidth + 'px';
-  if (pLeft) vNewNode.style.left = (isNaN(pLeft * 1)) ? pLeft : pLeft + 'px';
+  if (pLeft !== undefined && pLeft !== null) vNewNode.style.left = (isNaN(pLeft * 1)) ? pLeft : pLeft + 'px';
   if (pText) {
     if (pText.indexOf && pText.indexOf('<') === -1) {
       vNewNode.appendChild(document.createTextNode(pText));
