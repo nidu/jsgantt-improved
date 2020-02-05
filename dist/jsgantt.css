@@ -68,6 +68,20 @@ td.gtaskcell {
   text-align: left
 }
 
+.gchartrow {
+  position: relative;
+  height: 22px !important;
+}
+
+.gchartrow > div {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  line-height: 21px;
+  border-left-width: 0;
+  border-top-width: 0;
+}
+
 td.gspanning {
   border-left: none;
   border-right: none;
@@ -207,8 +221,13 @@ span.gfoldercollapse {
   border-collapse: collapse;
 }
 
-.gcharttable {
+.gcharttable,
+.gcharttableh {
   border: #efefef 1px solid;
+}
+
+.gcharttable {
+  border-top: none;
 }
 
 /* for some reason firefox needs this */
@@ -241,9 +260,8 @@ span.gfoldercollapse {
   font-size: 9px;
   text-align: left;
   white-space: nowrap;
-  top: 1px;
   position: absolute;
-  top: 2px;
+  top: -4px;
 }
 
 .ggroupcaption,
@@ -473,7 +491,8 @@ span.gfoldercollapse {
 div.gtaskbarcontainer {
   z-index: 1;
   position: absolute;
-  top: 0px
+  top: 0px;
+  margin-top: 3px;
 }
 
 .textbar {
@@ -738,6 +757,7 @@ td.gspanning div {
   position: absolute;
   top: 0px;
   left: 0px;
+  z-index: 1px;
 }
 
 .gantt-inputtable {

@@ -157,3 +157,33 @@ export const drawSelector = function (pPos) {
   }
   return vOutput;
 };
+
+/**
+ * To simplify figuring out width and left for chart cells.
+ * Get current cell left and width using corresponding getters.
+ * Go to next cell with next().
+ * 
+ * @example
+ * const chartCellSize = new ChartCellSizeProvider(vColWidth);
+ * chartCellSize.next(colSpan);
+ * const vTmpCell = newNode(vTmpRow, 'div', null, null, null, chartCellSize.width, chartCellSize.left);
+ */
+export class ChartCellSizeProvider {
+  private _left: number = 0;
+  private _width: number = 0;
+  
+  constructor(private colWidth: number) {}
+  
+  get left() { return this._left }
+  get width() { return this._width }
+
+  /**
+   * Width for the nested div. It was different in table version so i'd make it as a separate property
+   */
+  get nestedWidth() { return this._width }
+
+  next(colSpan: number) {
+    this._left += this._width;
+    this._width = this.colWidth * colSpan;
+  }
+}

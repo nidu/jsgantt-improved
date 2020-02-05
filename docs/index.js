@@ -217,7 +217,7 @@ function drawCustomElements(g) {
     const dataObj = item.getDataObject();
     if (dataObj && dataObj.deadline) {
       const x = g.chartRowDateToX(new Date(dataObj.deadline));
-      const td = item.getChildRow().querySelector('td');
+      const td = item.getChildRow().querySelector('div');
       td.style.position = 'relative';
       const div = document.createElement('div');
       div.style.left = `${x}px`;
