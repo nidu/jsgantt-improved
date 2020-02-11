@@ -157,3 +157,76 @@ export const drawSelector = function (pPos) {
   }
   return vOutput;
 };
+
+export function getNumCols(args: {
+  vFormat: string
+  vMinDate: Date
+  vMaxDate: Date
+  vShowWeekends: boolean
+}): number {
+  let vTmpDate = new Date();
+  const {vFormat, vMinDate, vMaxDate, vShowWeekends} = args;
+  vTmpDate.setFullYear(vMinDate.getFullYear(), vMinDate.getMonth(), vMinDate.getDate());
+  if (vFormat == 'hour') vTmpDate.setHours(vMinDate.getHours());
+  else vTmpDate.setHours(0);
+  vTmpDate.setMinutes(0);
+  vTmpDate.setSeconds(0);
+  vTmpDate.setMilliseconds(0);
+  let vNumCols = 0;
+
+  while (vTmpDate.getTime() <= vMaxDate.getTime()) {
+    if (vFormat == 'day') {
+      if (vTmpDate.getDay() % 6 == 0) {
+        if (!vShowWeekends) {
+          vTmpDate.setDate(vTmpDate.getDate() + 1);
+          continue;
+        }
+      }
+
+      if (vTmpDate <= vMaxDate) {
+        vNumCols++;
+      }
+
+      vTmpDate.setDate(vTmpDate.getDate() + 1);
+    }
+    else if (vFormat == 'week') {
+      if (vTmpDate <= vMaxDate) {
+        vNumCols++;
+      }
+
+      vTmpDate.setDate(vTmpDate.getDate() + 7);
+    }
+    else if (vFormat == 'month') {
+      if (vTmpDate <= vMaxDate) {
+        vNumCols++;
+      }
+
+      vTmpDate.setDate(vTmpDate.getDate() + 1);
+
+      while (vTmpDate.getDate() > 1) {
+        vTmpDate.setDate(vTmpDate.getDate() + 1);
+      }
+    }
+    else if (vFormat == 'quarter') {
+      if (vTmpDate <= vMaxDate) {
+        vNumCols++;
+      }
+
+      vTmpDate.setDate(vTmpDate.getDate() + 81);
+
+      while (vTmpDate.getDate() > 1) vTmpDate.setDate(vTmpDate.getDate() + 1);
+    }
+    else if (vFormat == 'hour') {
+      for (let i = vTmpDate.getHours(); i < 24; i++) {
+        vTmpDate.setHours(i);//works around daylight savings but may look a little odd on days where the clock goes forward
+        if (vTmpDate <= vMaxDate) {
+          vNumCols++;
+        }
+      }
+      vTmpDate.setHours(0);
+      vTmpDate.setDate(vTmpDate.getDate() + 1);
+    }
+  }
+
+  return vNumCols;
+}

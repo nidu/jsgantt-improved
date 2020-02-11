@@ -97,6 +97,7 @@ export const includeGetSet = function () {
   this.setWeekColWidth = function (pWidth) { this.vWeekColWidth = pWidth; };
   this.setMonthColWidth = function (pWidth) { this.vMonthColWidth = pWidth; };
   this.setQuarterColWidth = function (pWidth) { this.vQuarterColWidth = pWidth; };
+  this.setStretchColumns = function (pStretchColumns) { this.vStretchColumns = pStretchColumns; };
   this.setRowHeight = function (pHeight) { this.vRowHeight = pHeight; };
   this.setLang = function (pLang) { if (this.vLangs[pLang]) this.vLang = pLang; };
   this.setChartBody = function (pDiv) { if (typeof HTMLDivElement !== 'function' || pDiv instanceof HTMLDivElement) this.vChartBody = pDiv; };
@@ -178,6 +179,7 @@ export const includeGetSet = function () {
   this.getWeekColWidth = function () { return this.vWeekColWidth; };
   this.getMonthColWidth = function () { return this.vMonthColWidth; };
   this.getQuarterColWidth = function () { return this.vQuarterColWidth; };
+  this.getStretchColumns = function () { return this.vStretchColumns; };
   this.getRowHeight = function () { return this.vRowHeight; };
   this.getChartBody = function () { return this.vChartBody; };
   this.getChartHead = function () { return this.vChartHead; };

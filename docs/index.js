@@ -119,6 +119,7 @@ function start(e) {
         document.querySelector("#dynamicTooltip:checked") ?
           generateTooltip :
           newtooltiptemplate,
+      vStretchColumns: document.querySelector("#stretchColumns:checked"),
       vDebug,
       vEditable,
       vColumnOrder,
